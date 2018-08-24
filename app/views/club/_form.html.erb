@@ -1,0 +1,18 @@
+<% #TODO: 폼헬퍼 만들기 %>
+<%= form_for(@club) do |c| %>
+
+  <%= c.label :name %>
+  <%= c.text_field :name, placeholder: '제목을 입력해주세요', class: 'hack' %>
+
+  <%= c.label :content %>
+  <%= c.text_area :content %>
+
+  <%= c.label :categoty %>
+  <%= c.text_area :category %>
+
+  <%= c.label :mainimage %>
+  <%= c.file_field :mainimage %>
+
+  <%= c.submit value: '얍!' %>
+
+<% end %>

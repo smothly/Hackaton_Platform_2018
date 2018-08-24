@@ -1,0 +1,37 @@
+
+	<div class="container-login100">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+			<form class="login100-form validate-form">
+					<%= image_tag("postbox.png", :class => "banana_img" )%>
+				<span class="login100-form-title p-b-37">
+					쪽지함
+				</span>
+
+				<div class="wrap-input100 validate-input m-b-20">
+					<p>보낸 쪽지 목록</p>
+					<% @user_messages.each do |m| %>
+					 		<span>쪽지 받는 사람 : </span> <%= User.find(m.reciever_id).name %>
+						   	<span>쪽지 내용 : </span> <%= m.content %>
+					   		<%= link_to "/message/destroy/" + m.id.to_s, method: :delete, data: { confirm: '쪽지를 삭제 하시겠습니까?' } do%>
+					  			<span>쪽지 취소 버튼</span>
+							<% end %>
+									<br>
+					<% end %>
+				</div>
+				
+				<div class="wrap-input100 validate-input m-b-20">
+					<p>받은 쪽지 목록</p>
+					<% Message.all.each do |m| %>
+						<% if m.reciever_id == current_user.id %>
+							<span>보낸 사람 : </span> <%= User.find(m.user_id).name %>
+							<span>쪽지 내용 : </span> <%= m.content %>
+							<br>
+						<% end %>
+					<% end %>
+				</div>
+
+			</form>
+
+			
+		</div>
+	</div>

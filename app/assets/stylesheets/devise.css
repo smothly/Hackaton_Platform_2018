@@ -1,0 +1,247 @@
+/*로그인*/
+
+.login {
+    margin-top: 30px;
+    font-family: Hanna;
+    
+}
+.banana_img {
+    width: 100%;
+    height: auto;
+    float: left;
+}
+
+.login h2{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.login .field {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.email label{
+    margin-right: 12px;
+}
+
+.login .field input{
+  font-size: 16px;
+  color: #4b2354;
+  line-height: 1.2;
+
+  display: block;
+  width: 70%;
+  height: 48px;
+  background: transparent;
+  padding: 0 20px 0 23px;
+  margin-left: 50px;
+/*    margin-left: 5px;
+    width: 15%;
+    font-size: 13px;*/
+}
+
+.login .field #user_remember_me {
+    margin: 2px;
+    padding: 0;
+    width: 15px;
+    margin-left: 165px;
+    margin-top: -20px;
+}
+
+.login .actions {
+    margin-top: 0;
+}
+
+.login .actions input{
+    width: 60px;
+    height: auto;
+    margin-top: 2px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    border: 1px solid grey;
+    background-color: white;
+    color: black;
+    background-image: none;
+    transition: 0.2s;
+}
+
+.login .actions input:hover{
+    background-color: orange;
+    color: white;
+}
+
+.login a{
+    color: black;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.login a:hover{
+    color: orange;
+    text-decoration: none;
+}
+
+/*회원가입*/
+
+.sign-up {
+    margin-top: 30px;
+    text-align: center;
+    font-family: Hanna;
+}
+
+.sign-up h2{
+    margin-bottom: 30px;
+}
+
+.sign-up .fields1 {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.sign-up .fields2 {
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.sign-up .field label{
+    margin-bottom: .2rem;
+    display: inline-block;
+    text-align: left;
+}
+
+.sign-up .field input{
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.sign-up .actions input{
+    width: 60px;
+    height: auto;
+    margin-top: 2px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    border: 1px solid grey;
+    background-color: white;
+    color: black;
+    background-image: none;
+    transition: 0.2s;
+    font-size: 18px;
+}
+
+.sign-up .actions input:hover{
+    background-color: orange;
+    color: white;
+}
+
+.sign-up a{
+    color: black;
+    transition: 0.2s;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.sign-up a:hover{
+    color: orange;
+    text-decoration: none;
+}
+
+/*회원정보 수정*/
+.regit_edit {
+    margin-top: 30px;
+    text-align: center;
+    font-family: Hanna;
+}
+
+.regit_edit h2{
+    margin-bottom: 30px;
+}
+
+.regit_edit .fields1 {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.regit_edit .fields2 {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 15px;
+    font-size: 18px;
+    top: -26px;
+}
+
+.regit_edit .field i, em{
+    font-size: 10px;
+}
+
+.regit_edit .field label{
+    margin-bottom: .2rem;
+    display: inline-block;
+    text-align: left;
+}
+
+.regit_edit .field input{
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.regit_edit .actions input{
+    position: relative;
+    width: 85px;
+    height: auto;
+    margin-top: 2px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    border: 1px solid grey;
+    background-color: white;
+    color: black;
+    background-image: none;
+    transition: 0.2s;
+    font-size: 18px;
+    top: 26px;
+}
+
+.regit_edit .actions input:hover{
+    background-color: orange;
+    color: white;
+}
+
+.regit_edit a{
+    color: black;
+    transition: 0.2s;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.regit_edit a:hover{
+    color: orange;
+    text-decoration: none;
+}
+
+.regit_edit .button_to input{
+    position: relative;
+    width: 85px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    border: 1px solid grey;
+    background-color: white;
+    color: black;
+    background-image: none;
+    transition: 0.2s;
+    font-size: 18px;
+}
+
+.regit_edit .button_to input:hover{
+    background-color: orange;
+    color: white;
+}
+
+.regit_delete {
+    margin-top: 30px;
+}

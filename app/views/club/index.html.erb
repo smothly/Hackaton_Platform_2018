@@ -1,0 +1,87 @@
+<script>
+function category_filter(category_name){
+  var category_list = document.getElementsByClassName("dong-li-category");
+  for (i = 0; i < category_list.length; i++) {
+    if (category_list[i].innerHTML.indexOf(category_name) > -1) {
+      category_list[i].parentElement.parentElement.style.display = "";
+    } else {
+      category_list[i].parentElement.parentElement.style.display = "none";
+    }
+  }
+}
+</script>  
+
+<div class = 'dongari-wrap'>
+        
+        <!--동아리 캐러셀-->
+        <div id="dongari-car" class="carousel slide" data-ride="carousel">
+        
+          <!-- 캐러셀 이미지 -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <%=image_tag("Carouselimage1.jpg")%>
+            </div>
+            <div class="carousel-item">
+              <%=image_tag("https://onelovemassive.com/wp-content/uploads/2016/10/test-image.png")%>
+            </div>
+            <div class="carousel-item">
+              <%=image_tag("https://empow.me/wp-content/uploads/2013/04/test.gif")%>
+            </div>
+          </div>
+        
+          <!-- 좌우 화살표 -->
+          <a class="carousel-control-prev" href="#dongari-car" data-slide="prev">
+            <i class="fas fa-caret-left fa-4x"></i>
+          </a>
+          <a class="carousel-control-next" href="#dongari-car" data-slide="next">
+            <i class ="fas fa-caret-right fa-4x"></i>
+          </a>
+        </div>
+        
+        <div class = 'category_name'>
+          <h1 style='margin-bottom: 0'>동아리 분류</h1>
+        </div>
+        <!--동아리 카테고리-->
+        <div class="dongari-cat-wrap">
+          <div class="dong-categories">
+              <a><div class="dong-cat-list" onclick = "category_filter('예술')";><p>예   술</p>
+                <%=image_tag("예술.jpg", :style => "padding-left: 0;")%>
+              </div></a>
+              <a><div class="dong-cat-list" onclick = "category_filter('헬스')";><p>헬  스</p>
+                <%=image_tag("헬스.jpg")%>
+              </div></a>
+              <a><div class="dong-cat-list" onclick = "category_filter('봉사')";><p>봉  사</p>
+                <%=image_tag("봉사.jpg")%>
+              </div></a>
+              <a><div class="dong-cat-list" onclick = "category_filter('종교')";><p>종  교</p>
+                <%=image_tag("종교2.jpg")%>
+              </div></a>
+              <a><div class="dong-cat-list" onclick = "category_filter('학술')";><p>학  술</p>
+                <%=image_tag("학술.jpg", :style => "padding-right: 0;")%>
+              </div></a>
+          </div> 
+        </div>
+    
+    <div class='dong-list-wrap'>
+        <%= link_to '동아리 작성', new_club_path, :class => 'club_create' %>
+        
+        <ul class='dong-list'>
+            <% @clubs.each do |club| %>
+                <li>
+                    <div class = 'dong-li-img'><%= link_to image_tag(club.mainimage), club %></div>
+                    <div class = 'dong-li-sub'>
+                    <a><%= link_to club.name, club %></a>
+                    <p class = 'dong-li-category' style = "font-size: 15px;
+                                margin-bottom: 2px;"><%= club.category %></p>
+                    <p><%= club.content %></p>
+                    </div>
+                <!--이거 일단 주석처리 해놓고 show 부분으로 옮길지 고민중-->  
+                    <%#= link_to 'Show', club %>
+                    <%#= link_to 'Edit', edit_club_path(club) %>
+                    <%#= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
+

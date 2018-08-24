@@ -1,0 +1,273 @@
+<div class = "club_show_wrap">
+  
+  <!--동아리 소개 부분-->
+  <div class = 'club_intro'>
+    <div class = 'club_image'>
+    <%= image_tag(@club.mainimage, :class => 'club_bg') %>
+    </div>
+    <div class = 'club_sub'>
+      <div class = 'club_sub_inner'>
+      <p style = 'font-size: 20px;'><%= @club.category %></p>
+  <!--    <p>동아리ID : <#%= @club.id %></p>-->
+      <p style = 'font-size: 40px;'><%= @club.name %></p>
+      <p style = 'font-size: 18px;'><%= @club.content %></p>
+    
+      <!-- 동아리 수정/삭제 -->
+  <%#= link_to 'Back', club_index_path %>
+  <%= link_to edit_club_path(@club) do%>
+    <i class="fas fa-edit fa-1x"></i>
+  <% end%>
+  <%= link_to @club, method: :delete, data: { confirm: 'Are you sure?' } do %>
+    <i class="fas fa-trash fa-1x"></i>
+  <% end%>
+  <hr>
+
+        <button class = 'club_intro_btn' type="button"><i class="far fa-heart fa-4x"></i> 찜  하  기</button>
+        <br>
+        <button class = 'club_intro_btn' type="button"><i class="fas fa-check fa-4x"></i> 참가신청</button>
+        <br>
+        <button class = 'club_intro_btn' type="button"><i class="far fa-comments fa-4x"></i> 문의하기</button>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class = 'club_articles_wrap'>
+    <div class = 'club_article_new'>
+    <!-- 게시글 작성하는 폼 -->
+      <p>게시글을 작성하시겠습니까?</p>
+      <%= form_tag "/article", method: "post", multipart: true do %>
+        <input type = "hidden" value = '<%= form_authenticity_token%>' name ='authenticity_token'></input>
+  <!-- 문득 '제목이 필요한가..?' 라는 생각이 들어서 일단 주석처리      
+  <input type = "text" name = "article[title]" placeholder="게시글 제목 입력"></input>-->
+        <input type = "text" class = 'article_content'name = "article[content]" placeholder="게시글 내용 입력"></input>
+        <input type = "hidden" name = "article[club_id]" value= "<%= @club.id %>"></input>
+        <% if current_user != nil %>
+          <input type = "hidden" name = "article[user_id]" value= "<%= current_user.id %>"></input>
+        <% end %>
+        <input style = "position: absolute;
+                        width: 50%;
+                        margin-top: 5px;
+                        left: 80px;"
+        type = "file" name = "article[images][]" multiple ></input>
+        <input style = "position: absolute;
+                        width: 60px;
+                        margin-right: 15px;
+                        margin-top: 5px;
+                        right: 50px;"
+        type = "submit"></input>
+      <% end %>
+    </div>
+    
+    <div class = 'club_article_show' style= 'display: block;'>
+     
+    <% #TODO: 게시글 모달로 수정하는 폼 띄우기 %>
+    <!-- 게시글보여주기  -->
+    <% @club.articles.reverse_each do |a| %>
+      
+      <div class = 'each_article'>
+        
+        <% #TODO: 작성 날짜 위치 옮김 %>
+        <p class = 'article_time'
+           style = 'position: absolute;
+                    font-size: 16px;
+                    top: 1.5%;
+                    left: 2%;
+                    padding: 0;
+                    margin: 0;'><%= a.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+        <% #TODO: 게시글 작성자 나오게 하고 링크 걸어놈 현재 디비 마이그레이트 안돼서 주석처리 %>
+        <%= link_to "/message/send_form/" + a.user_id.to_s,
+        class: "message_tooltip",
+        'data-toggle' => 'tooltip', 
+        'title' => "쪽지 전송", 
+        'data-placement' => 'top' do%>
+          <p class = 'article_user'
+             style = 'position: absolute;
+                      font-size: 16px;
+                      top: 1.5%;
+                      left: 30%;
+                      padding: 0;
+                      margin: 0;
+                      color: black;'>
+            <%= User.find(a.user_id).name %></p>
+        <% end %>
+        
+        <!-- 사진 여러개 나오게 하기 -->
+        <% a.images.each_with_index do |i,index| %>
+          <% if index == 0%>
+            <% if a.images.length != 1 %>
+              <div class ='article_img'>
+                <%= image_tag(i, :class => 'multi_img') %>
+                    <div class="overlay">
+                        <a data-toggle="modal" data-target="#modal_image<%=a.id%>" class="icon" title="사진 더보기">
+                          <i class="fa fa-plus"></i> 
+                        </a>
+                    </div>
+              </div>
+            <% else %>
+              <div class ='article_img'>
+                <a data-toggle="modal" data-target="#modal_image<%=a.id%>"> 
+                  <%= image_tag(i) %>
+                </a>
+              </div>
+            <% end %>
+          <% else %>
+          <% end %>
+        <% end %>
+        
+        <p><%= a.content %></p>
+        
+        
+        <% #TODO: 게시글 모달 일단 보류,,, 넘 어렵당ㅠ %>
+        <!--게시글 수정-->
+        <%= link_to edit_article_path(a), 'data-dismiss' => "modal", 'data-target' => '#article-edit', "data-toggle" => "modal" do%>
+          <i style = "position: absolute;
+                      top: 10px;
+                      right: 45px;"
+          class="fas fa-edit"></i>
+        <% end %>
+        
+        <!--게시글 삭제-->
+        <%= link_to a, method: :delete, data: { confirm: 'Are you sure?' } do%>
+          <i style = "position: absolute;
+                      top: 10px;
+                      right: 15px;"
+          class="fas fa-trash"></i>
+        <% end%>
+
+        <hr style='margin-bottom: 3px;'>
+        
+        <!--댓글 다는 부분-->
+        <div class = 'club_comment_new'>
+         <!-- <p>댓글을 작성하시겠습니까?</p>-->
+          <%= form_tag "/comment/create", method: "post", multipart: true do %>
+            <input type = "hidden" value = '<%= form_authenticity_token%>' name ='authenticity_token'></input>
+            <input type = "text" style = "width: 90%;
+                                          border: 1px solid lightgrey;
+                                          border-radius: 3px;
+                                          padding-left: 5px;"
+            name = "comment[content]" placeholder="댓글 내용 입력"></input>
+            <input type = "hidden" name = "comment[article_id]" value = "<%= a.id %>"></input>
+            <% if current_user != nil %>
+              <input type = "hidden" name = "comment[user_id]" value = "<%= current_user.id %>" ></input>
+            <% end %>
+            <button class = 'comment_button' type = "submit" style = "margin-left: 5px;
+                                              width: 30px;
+                                              height: 30px;
+                                              position: relative;
+                                              top: 7.5px;
+                                              background-color: white;
+                                              border: 1px solid lightgrey;
+                                              border-radius: 3px;
+                                              transition: 0.3s;">
+              <i class="fas fa-comment" style = 'position: absolute;
+                                                 top: 0px;
+                                                 left: 0.5px;'></i>
+            </button>
+          <% end %>
+        </div>
+   
+        <div class = 'club_comment_show'>
+          <!-- 댓글 보여주기 -->
+          <% a.comments.each do |c| %>
+            <div class = 'each_comment' 
+                 style = 'position: relative;'>
+              <hr style='margin: 0;'>
+              <% #TODO: 댓글 시간 위치 조정함 %>
+              <p class = 'comment_time'
+                style = 'position: absolute;
+                         font-size: 12px;
+                         top: 10%;
+                         right: 10%;
+                         padding: 0;
+                         margin: 0;'><%= c.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+              <% #TODO: 댓글 작성자 이름 누르면 쪽지 보내기 기능 해놈 이름 클릭하면 자바스크립트로  쪽지 보내기 버튼 나왓으면 좋겠음 %>
+              <%= link_to "/message/send_form/" + c.user_id.to_s,
+                  'data-toggle' => 'tooltip', 
+                  'title' => "쪽지 전송", 
+                  'data-placement' => 'left' do%>
+              <p class = 'comment_name' style = 'font-size: 18px;
+                                                 padding: 5px 20px 5px 20px;
+                                                 text-align: left;
+                                                 color: grey;
+                                                 margin: 0;'><%= User.find(Comment.find(c.id).user_id).name %></p>
+              <% end %>
+              <p class = 'comment_content' style = 'font-size: 15px;
+                                                    padding: 3px 10px 5px 10px;
+                                                    text-align: left;
+                                                    margin: 0;'><%= c.content%></p>
+              <%= link_to "/comment/destroy/" + c.id.to_s, method: :delete, data: { confirm: '댓글을 삭제 하시겠습니까?' } do%>
+                <i style= 'position: absolute;
+                           bottom: 10px;
+                           right: 15px;' class="fas fa-trash"></i>
+            <% end %>
+            </div>
+          <% end %>
+        </div>
+   
+      </div>
+
+                  <!--사진 모달 부분-->
+          <div id="modal_image<%=a.id%>" class="modal" role="dialog">
+            <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <div class= "carousel slide" id="a_car<%= a.id %>" data-ride="carousel">
+                    
+                     <!-- The slideshow -->
+                    <div class="carousel-inner">
+                      <% a.images.each_with_index do |i, index| %>
+                        <% if index == 0 %>
+                            <div class="carousel-item active">
+                              <%= image_tag(i) %>
+                            </div>
+                        <% else %>
+                            <div class="carousel-item">
+                              <%= image_tag(i) %>
+                            </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    
+                    <% if a.images.length != 1 %>
+                        <a class="carousel-control-prev" href="#a_car<%= a.id %>" data-slide="prev">
+                          <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#a_car<%= a.id %>" data-slide="next">
+                          <span class="carousel-control-next-icon"></span>
+                        </a>
+                    <% else %>
+                    <% end %>
+                  </div>
+                  
+              </div>
+          
+            </div>
+            </div>
+          </div>
+        <% end %>
+          
+    </div>
+  </div>
+  
+  <div class = "article_right">
+    <h4>공 지 사 항</h4>
+    <div class = 'each_article'>
+      느아아아아
+    </div>
+  </div>
+  
+  </div>
+</div>
+
+<div class="modal fade text-center" id="article-edit" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>

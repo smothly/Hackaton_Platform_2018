@@ -1,0 +1,351 @@
+/*동아리 설명 캐러셀 */
+.dongari-wrap {
+    z-index: 999;
+    margin: 0;
+    padding: 0 10%;
+}
+
+#dongari-car {
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+
+.carousel-inner img {
+  height: 450px;
+  width: 100%;
+}
+
+.carousel-control-prev a{
+    text-decoration: none;
+}
+
+.carousel-control-next a{
+    text-decoration: none;
+}
+
+.fa-caret-left {
+    color: black;
+}
+
+.fa-caret-right {
+    color: black;
+}
+
+/*동아리 카테고리명*/
+.category_name {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/*동아리 분류*/
+
+.dongari-cat-wrap {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+
+.dong-categories div{
+    display: inline-block;
+}
+
+.dong-cat-list {
+    position: relative;
+    float: left;
+    width: 20%;
+    height: 100px;
+    padding: 0px 2px;
+}
+
+.dong-cat-list p{
+    font-family: Hanna;
+    position: absolute;
+    color: white;    
+    z-index: 101;
+    bottom: 17px;
+    right: 40%;
+    font-size: 24px;
+}
+
+.dong-categories img{
+    position: relative;
+    border-radius: 5px;
+    width: 100%;
+    height: 100px;
+    padding: 0px 2px;
+    filter: grayscale(1) brightness(0.2);
+    z-index: 100;
+    transition: 0.2s;
+}
+
+.dong-cat-list:hover > img{
+    filter: grayscale(0) brightness(0.6);
+}
+
+
+
+/*동아리 목록*/
+
+.dong-list {
+    margin-top: 20px;
+}
+
+.dong-list li{
+    margin-top: 20px;
+    width: 33.33%;
+    float: left;
+    height: auto;
+}
+
+.dong-li-img img{
+    border-radius: 3px;
+    width: 100%;
+    height: 200px;
+}
+
+.dong-li-sub{
+    padding-top: 4px
+}
+
+.dong-li-sub a{
+    font-size: 25px;
+    transition: 0.3s;
+    color: black;
+}
+
+.dong-li-sub a:hover{
+    color: orange;
+    text-decoration: none;
+}
+
+
+.ding-li-sub p{
+    font-size: 12px;
+}
+
+.dongari-wrap h1 {
+    font-family: Hanna;
+}
+
+.dongari-wrap hr {
+    border: 0.5px solid lightgrey;
+}
+
+.dong-list-wrap {
+    text-align: center;
+    margin: 40px 0 20px 0;
+    font-family: Hanna;
+}
+
+.club_create {
+    background-color: white;
+    border: none;
+    border-radius: 3px;
+    color: black;
+    font-size: 30px;
+    transition: 0.3s;
+    margin-bottom: 20px;
+}
+
+.club_create:hover {
+    color: orange;
+    text-decoration: none;
+}
+
+/*동아리 Show*/
+.club_show_wrap {
+    margin-top: 40px;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-family: Hanna;
+}
+
+.club_intro {
+    height: auto;
+    display: block;
+}
+
+.club_intro_btn {
+    width: 300px;
+    height: 80px;
+    font-size: 30px;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.club_intro_btn i{
+    font-size: 35px;
+    vertical-align: middle;
+}
+
+.club_image {
+    width: 50%;
+    height: auto;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.club_image img{
+    display: block;
+    width: 100%;
+    max-height: 600px;
+    max-width: inherit;
+}
+
+.club_sub {
+    text-align: center;
+    width: 40%;
+    height: auto;
+    display: inline-block;    
+}
+
+.club_sub_inner {
+    display: block;
+    padding-bottom: 30px;
+}
+
+.club_sub .btn {
+    background-color: white;
+    border: solid 1px lightgrey;
+    margin-top: 20px;
+}
+
+/*동아리 게시글*/
+
+.club_articles_wrap{
+    width: 50%;
+    display: inline-block;
+    text-align: center;
+}
+
+
+.club_article_new {
+    position: relative;
+    padding: 15px 20px 40px 40px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.club_article_new input{
+    width: 100%;
+}
+
+.article_content {
+    height: 120px;
+    padding-left: 30px;
+}
+
+/*.club_article_show {
+}*/
+
+.club_article_show img{
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+
+.each_article {
+    position: relative;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    padding: 0px 0px 0px 0px;
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+
+.each_article img{
+    width: 100%;
+    height: auto;
+    transition: 0.3s;
+}
+
+.each_article img:hover{
+    filter: grayscale(0) brightness(0.6);
+}
+
+.each_article p{
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+.article_user:hover{
+    color: orange;
+}
+
+.club_show_wrap .fas {
+    color: black;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+.club_show_wrap .fas:hover {
+    color: orange;
+    text-decoration: none;
+}
+
+.club_comment_new form {
+    padding-bottom: 10px;
+}
+
+.comment_button:hover {
+    background-color: orange;
+}
+
+/*동아리 공지사항 부분*/
+.article_right {
+    width: 50%;
+    display: inline-block;
+    text-align: center;
+    float: right;
+}
+
+.message_tooltip {
+    position: absolute;
+    min-width: 60px;
+    top: 1.5%;
+    left: 25%;
+}
+
+.article_img {
+    position: relative;
+    margin-top: 45px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+  background-color: black;
+}
+
+.overlay:hover {
+  opacity: 0.5;
+}
+
+.icon {
+  color: white;
+  font-size: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.img_wrap {
+    width: auto;
+    height: auto;
+}

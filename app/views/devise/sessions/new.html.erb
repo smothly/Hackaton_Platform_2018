@@ -1,0 +1,40 @@
+<head>
+	<title>Login V9</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+	<div class="container-login100">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+					<%=image_tag("banana.png", :class => "banana_img")%> <br/>
+				<span class="login100-form-title p-b-37">로그인</span>
+					<div class="login">
+						<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      				<div class="field email">
+        				<%= f.label :이메일 %>
+        				<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      				</div>
+    
+      				<div class="field">
+        				<%= f.label :비밀번호 %>
+        				<%= f.password_field :password, autocomplete: "off" %>
+      				</div>
+    
+      				<% if devise_mapping.rememberable? -%>
+        				<div class="field">
+        					<%= f.label :이메일_저장 %>
+          				<%= f.check_box :remember_me %>
+        				</div>
+     					<% end %>
+     						<div class="container-login100-form-btn">
+					      			<%= f.submit "로그인", class: "login100-form-btn" %>
+							</div>
+    				<% end %>
+					</div>
+				
+
+
+		</div>
+	</div>

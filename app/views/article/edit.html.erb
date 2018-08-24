@@ -1,0 +1,29 @@
+<!--수정 모달에 들어갈 부분-->
+<div class="modal-header">
+  <h4>게시글 수정</h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<div class="modal-body">
+  <%= form_for(@article) do |a| %>
+  
+    <%= a.label :title %>
+    <%= a.text_field :title, placeholder: '제목을 입력해주세요' %>
+  
+    <%= a.label :content %>
+    <%= a.text_area :content %>
+  
+    <%= a.hidden_field :club_id %>
+  
+    <% @article.images.each do |i| %>
+      <%= image_tag(i) %>
+    <% end %>
+  
+    <%= a.label :images %>
+    <%= a.file_field :images, multiple: true %>
+</div>
+
+<div class="modal-footer">
+  <%= a.submit value: '얍!' %>
+  <% end %>
+</div>

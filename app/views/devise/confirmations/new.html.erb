@@ -1,0 +1,35 @@
+
+<head>
+	<title>이메일보내기</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+	<div class="container-login100">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+					<%=image_tag("bananapeel.png", :class => "banana_img")%> <br/>
+				<span class="login100-form-title p-b-37">이메일 다시보내기</span>
+					<div class="login">
+						<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+              <%= devise_error_messages! %>
+      				<div class="field email">
+        				<%= f.label :이메일 %>
+        				<%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+      				</div>
+    
+    
+     						<div class="container-login100-form-btn">
+					      			<%= f.submit "이메일 다시 보내기", class: "login100-form-btn" %>
+							  </div>
+    				<% end %>
+    				  <div class='container'>
+    				<%= render "devise/shared/links" %>
+    				  </div>
+					</div>
+				
+
+
+		</div>
+	</div>

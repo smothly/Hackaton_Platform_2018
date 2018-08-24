@@ -1,0 +1,91 @@
+
+<div class = 'dongari-wrap'>
+    
+    <!--동아리 캐러셀-->
+    <div id="dongari-car" class="carousel slide" data-ride="carousel">
+    
+      <!-- 캐러셀 이미지 -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%=image_tag("https://wow.olympus.eu/webfile/img/1632/x=1024/oly_testwow_stage.jpg")%>
+        </div>
+        <div class="carousel-item">
+          <%=image_tag("Carouselimage.jpg")%>
+        </div>
+        <div class="carousel-item">
+          <%=image_tag("https://empow.me/wp-content/uploads/2013/04/test.gif")%>
+        </div>
+      </div>
+    
+      <!-- 좌우 화살표 -->
+      <a class="carousel-control-prev" href="#dongari-car" data-slide="prev">
+        <i class="fas fa-caret-left fa-4x"></i>
+      </a>
+      <a class="carousel-control-next" href="#dongari-car" data-slide="next">
+        <i class ="fas fa-caret-right fa-4x"></i>
+      </a>
+    </div>
+    
+    
+    <div class = 'category_name'>
+      <h1 style='margin-bottom: 0'>동아리 분류</h1>
+    </div>
+    
+    <!--동아리 카테고리-->
+    <div class="dongari-cat-wrap">
+      <div class="dong-categories">
+          <a href='#'><div class="dong-cat-list"><p>예 술</p>
+          <%=image_tag("예술.jpg", :style => "padding-left: 0;")%>
+          </div></a>
+          <a href='#'><div class="dong-cat-list"><p>헬 스</p>
+          <%=image_tag("헬스.jpg")%>
+          </div></a>
+          <a href='#'><div class="dong-cat-list"><p>봉 사</p>
+          <%=image_tag("봉사.jpg")%>
+          </div></a>
+          <a href='#'><div class="dong-cat-list"><p>종 교</p>
+          <%=image_tag("종교2.jpg")%>
+          </div></a>
+          <a href='#'><div class="dong-cat-list"><p>학 술</p>
+          <%=image_tag("학술.jpg", :style => "padding-right: 0;")%>
+          </div></a>
+      </div> 
+    </div>
+
+    <!--동아리 목록-->
+<!--  club : index쪽 작업 완료되면 이쪽으로 옮길 예정이라 일단 주석처리
+<h1>동아리 목록</h1>
+    <hr>
+    
+    <div class='dong-list-wrap'>
+      <ul class='dong-list'>
+        <li>
+          <div class = 'dong-li-img'>
+            <%#=image_tag("http://cdn1.thr.com/sites/default/files/2017/06/thr_modeling_power_center_group-9_0353_c.1_0.jpg")%>
+          </div>
+          <div class = 'dong-li-sub'>
+            <a>동아리 1</a>
+            <p>우리 동아리는 지상최대의 멋쟁이들만 모인 최고의 동아립니다. 대애박</p>
+          </div>
+        </li>
+        <li>
+          <div class = 'dong-li-img'>
+            <%#=image_tag("https://www.duffyduffylaw.com/wp-content/uploads/2017/12/group-img-3.jpg")%>
+          </div>
+          <div class = 'dong-li-sub'>
+            <a>동아리 2</a>
+            <p>우리 동아리가 더 체고시다!</p>
+          </div>
+        </li>
+        <li>
+          <div class = 'dong-li-img'>
+            <%#=image_tag("http://segolive.com/segolive/images/foundation-img-002.png")%>
+          </div>
+          <div class = 'dong-li-sub'>
+            <a>동아리 3</a>
+            <p>ㅎㅎㅎㅎㅎㅎ</p>
+          </div>
+        </li>
+      </ul>
+    </div>-->
+</div>

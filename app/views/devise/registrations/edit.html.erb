@@ -1,0 +1,140 @@
+<!--<div class='container regit_edit'>
+  <h2>회원정보 수정 <% resource_name.to_s.humanize %></h2>
+  
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+  <div class = 'fields1'>
+    <div class="field">
+      <%= f.label :이메일 %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+    
+    <div class="field">
+      <%= f.label :'현재 비밀번호' %> <br />
+      <%= f.password_field :current_password, autocomplete: "off" %>
+    </div>  
+  
+    <div class="field">
+      <%= f.label :'변경 비밀번호' %> <br/>
+      <i>특수문자와 숫자를 포함해주세요!</i> <br/>
+      <%= f.password_field :password, autocomplete: "off" %>
+      <% if @minimum_password_length %>
+        <br />
+      <% end %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :'비밀번호 확인' %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+  </div>
+    
+  <div class = 'fields2'>
+    <div class="field">
+      <%= f.label :이름 %><br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :전공 %><br />
+      <%= f.text_field :major, autofocus: true, autocomplete: "off" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :학번 %><br />
+      <%= f.text_field :student_id, autofocus: true, autocomplete: "off" %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "수정완료" %>
+    </div>
+  </div>
+  
+  <div class='regit_delete'>
+  <% end %>
+  
+  <h3>계정 삭제</h3>
+  
+  <p>서비스가 마음에 들지 않으세요? <%= button_to "계정삭제", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  
+  </div>
+  <%= link_to "Back", :back %>
+</div>
+
+-->
+
+	<div class="container-login100">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+					<%=image_tag("bannana.png", :class => "banana_img")%> <br/>
+				<span class="login100-form-title p-b-37">회원정보수정<% resource_name.to_s.humanize %></span>
+					<div class="login">
+						<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+						<%= devise_error_messages! %>
+      				<div class="field email">
+                <%= f.label :이메일 %><국민대 웹메일><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "20****@kookmin.ac.kr", pattern: "[^@\s]+@kookmin\.ac\.kr" , title: "@kookmin.ac.kr 이메일만 가입가능합니다" %>
+                
+      				</div>
+      				
+      				  
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <% end %>
+              <div class="field">
+                <%= f.label :'현재 비밀번호' %> <br />
+                <%= f.password_field :current_password, autocomplete: "off" %>
+              </div>
+              
+      				<div class="field">
+                <%= f.label :'변경 비밀번호' %> <br/>
+                <i>특수문자와 숫자를 포함해주세요!</i> <br/>
+                <%= f.password_field :password, autocomplete: "off" %>
+                <% if @minimum_password_length %>
+                  <br />
+                <% end %>
+              </div>
+  
+              <div class="field">
+                <%= f.label :'비밀번호 확인' %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              </div>
+      				
+              <div class="field">
+                <%= f.label :이름 %><br />
+                <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
+              </div>
+    
+              <div class="field">
+                <%= f.label :전공 %><br />
+                <%= f.text_field :major, autofocus: true, autocomplete: "off" %>
+              </div>
+    
+              <div class="field">
+                <%= f.label :학번 %><br />
+                <%= f.text_field :student_id, autofocus: true, autocomplete: "off" %>
+              </div>
+      				
+      				<div class="actions">
+                <%= f.submit "가입" %>
+              </div>
+    
+              <div class="actions">
+                <%= f.submit "수정완료" %>
+              </div>
+
+    				<% end %>
+    				
+    				  </div>
+                <%= link_to "뒤로가기", :back %>
+              </div>
+    				
+					</div>
+				
+
+
+		</div>
+	</div>

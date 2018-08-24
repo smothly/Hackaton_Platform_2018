@@ -1,0 +1,25 @@
+<div class = 'container club_edit'>
+  
+    <h1>동아리 수정</h1>
+  
+  <%= form_for(@club) do |c| %>
+  
+    <h6>동아리 명</h6>
+    <%= c.text_field :name, placeholder: '제목을 입력해주세요', class: 'hack' %>
+    
+    <h6>동아리 설명</h6>
+    <%= c.text_area :content %>
+  
+    <h6>동아리 분류</h6>
+    <%= c.text_area :category %>
+  
+    <h6>동아리 사진</h6>
+    <%= c.file_field :mainimage %>
+  
+    <%= c.submit value: '수정' %>
+  
+  <% end %>
+  
+  
+  <!--<p><#%= #link_to 'index', club_index_path %></p>-->
+</div>
