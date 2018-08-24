@@ -22,7 +22,7 @@ gem 'mailgun-ruby', '~>1.1.6'
 #피가로(api 키 보안)
 gem 'figaro'
 
-gem 'sprockets'
+gem 'sprockets', '3.6.3'
 gem 'therubyracer'
 gem 'less-rails-bootstrap'
 gem "font-awesome-rails"

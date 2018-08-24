@@ -29,6 +29,7 @@
         <button class = 'club_intro_btn' type="button"><i class="far fa-comments fa-4x"></i> 문의하기</button>
     </div>
   </div>
+  </div>
   
   <hr>
   
@@ -114,18 +115,54 @@
           <% else %>
           <% end %>
         <% end %>
-        
         <p><%= a.content %></p>
-        
         
         <% #TODO: 게시글 모달 일단 보류,,, 넘 어렵당ㅠ %>
         <!--게시글 수정-->
-        <%= link_to edit_article_path(a), 'data-dismiss' => "modal", 'data-target' => '#article-edit', "data-toggle" => "modal" do%>
+        <a data-toggle="modal" href="#article-edit<%= a.id %>">
           <i style = "position: absolute;
                       top: 10px;
                       right: 45px;"
           class="fas fa-edit"></i>
-        <% end %>
+        </a>
+          
+        
+                <!--게시글 수정 모달-->
+   <div class="modal fade text-center" id="article-edit<%= a.id %>" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+          <div class="modal-header">
+            <h4>게시글 수정</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <div class="modal-body">
+            <%= form_for(a) do |x| %>
+          
+              <%= x.label :'내용' %>
+              <%= x.text_area :content %>
+            
+              <%= x.hidden_field :club_id %>
+          
+              <% a.images.each do |i| %>
+                <%= image_tag(i) %>
+              <% end %>
+            
+              <%#= x.label :'사진' %>
+              <%= x.file_field :images, multiple: true %>
+          </div>
+        
+          <div class="modal-footer">
+            <%= x.submit value: '수정' %>
+            <% end %>
+          </div>
+          
+         </div>
+          
+          </div>
+    </div>
+        
         
         <!--게시글 삭제-->
         <%= link_to a, method: :delete, data: { confirm: 'Are you sure?' } do%>
@@ -251,23 +288,16 @@
             </div>
           </div>
         <% end %>
-          
-    </div>
-  </div>
-  
-  <div class = "article_right">
-    <h4>공 지 사 항</h4>
-    <div class = 'each_article'>
-      느아아아아
-    </div>
-  </div>
-  
-  </div>
-</div>
 
-<div class="modal fade text-center" id="article-edit" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
     </div>
-  </div>
 </div>
+    
+      <div class = "article_right">
+        <h4>공 지 사 항</h4>
+          <div class = 'each_article'>
+              느아아아아
+          </div>
+      </div>
+
+  </div>
+  </div>

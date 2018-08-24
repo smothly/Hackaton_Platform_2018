@@ -1,7 +1,4 @@
-<h1>Message#send_form</h1>
-<p>Find me in app/views/message/send_form.html.erb</p>
-<% #TODO: 쪽지보내는 부분 디자인 수정 필요 %>
-<!--쪽지 작성 부분-->
+<div class = 'message container'>
   <%= form_tag "/message/create", method: "post" do%>
     <input type = "hidden" value = '<%= form_authenticity_token%>' name ='authenticity_token'></input>
     <input type = "text" name = "message[content]" placeholder="쪽지 내용 입력"></input>
@@ -9,3 +6,4 @@
     <input type = "hidden" name = "message[reciever_id]" value = "<%= @reciever_id %>"></input>
     <input type = "submit" style = "margin-left: 5px;"></input>
   <% end %>
+</div>

@@ -57,6 +57,7 @@
 	<div class="container-login100">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
 			<form class="login100-form validate-form">
+				<%= image_tag("bananaplant.png", :class => "banana_img" )%>
 				<span class="login100-form-title p-b-37">
 					<%= @user_name %>
 				</span>
@@ -78,13 +79,13 @@
 				
 				<% #TODO: 여기부터 디자인 수정필요%>
 				<div class="wrap-input100 validate-input m-b-20">
-    				<p>자신이 쓴 게시글</p>
+    				<h4>자신이 쓴 게시글</h4>
     				<% @user_articles.each do |a| %>
        					 	<span>게시물 내용 : </span> <%= a.content %>
        					 	이미지는 일단 추가안함
        						<br>
     				<% end %>
-    				<p>자신이 쓴 댓글</p>
+    				<h4>자신이 쓴 댓글</h4>
     				<% @user_comments.each do |c| %>
        					 	<span>댓글 단 게시물 내용 : </span> <%= Article.find(c.article_id).content %>
        						<span>댓글 내용 : </span> <%= c.content %>
