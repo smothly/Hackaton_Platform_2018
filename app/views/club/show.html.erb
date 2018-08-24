@@ -145,9 +145,9 @@
             
               <%= x.hidden_field :club_id %>
           
-              <% a.images.each do |i| %>
-                <%= image_tag(i) %>
-              <% end %>
+              <%# a.images.each do |i| %>
+                <%#= image_tag(i) %>
+              <%# end %>
             
               <%#= x.label :'사진' %>
               <%= x.file_field :images, multiple: true %>
@@ -222,7 +222,7 @@
               <%= link_to "/message/send_form/" + c.user_id.to_s,
                   'data-toggle' => 'tooltip', 
                   'title' => "쪽지 전송", 
-                  'data-placement' => 'left' do%>
+                  'data-placement' => 'left' do %>
               <p class = 'comment_name' style = 'font-size: 18px;
                                                  padding: 5px 20px 5px 20px;
                                                  text-align: left;

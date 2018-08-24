@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.8'
 
 gem 'sqlite3', :group => :development
 gem 'pg', '~> 0.21'
 gem 'rails_12factor'
+
 
 #디비보기
 gem 'rails_db'
