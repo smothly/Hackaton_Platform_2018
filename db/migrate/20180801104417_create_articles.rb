@@ -9,7 +9,6 @@ class CreateArticles < ActiveRecord::Migration
       #관계설정
       t.belongs_to :club
       t.belongs_to :user
-      add_foreign_key :clubs, :articless, on_delete: :cascade
 
       t.timestamps null: false
     end

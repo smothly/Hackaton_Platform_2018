@@ -9,11 +9,15 @@ Rails.application.routes.draw do
   #마이페이지
   get 'users/show'
   get 'users/messages'
+
+  #찜하기
+  post 'interest/index' => 'interest#interest'
   
   #댓글 라우터
   post 'comment/create'
   delete 'comment/destroy/:id' => 'comment#destroy'
 
+  
   resources :club
   resources :article
   

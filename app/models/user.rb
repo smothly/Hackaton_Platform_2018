@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :delete_all
   has_many :messages, dependent: :delete_all
   has_many :articles, dependent: :delete_all
+  has_one :interest
   
   belongs_to :club
   

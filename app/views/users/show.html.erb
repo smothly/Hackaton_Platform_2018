@@ -76,6 +76,14 @@
 					<h4>전공</h4>
 					<p><%= @user_major %></p>
 				</div>
+	
+				<!--<div class="wrap-input100 validate-input m-b-20">-->
+				<!--	<h4>찜한 목록들</h4>-->
+				<!--	<%# @user_interests.each do |i| %>-->
+    <!--   					 	<span>찜한 동아리 이름 : </span> <%#= Club.find(i.club_id).name %>-->
+    <!--   						<br>-->
+    <!--				<%# end %>-->
+				<!--</div>-->
 				
 				<% #TODO: 여기부터 디자인 수정필요%>
 				<div class="wrap-input100 validate-input m-b-20">
@@ -102,9 +110,11 @@
 				<br/>
 				
 				<div class="container-login100-form-btn">
+				  <a href = "/users/messages">
 					<button class="login100-form-btn">
-						<a href = "/users/messages">쪽지함</a>
+				      쪽지함
 					</button>
+				  </a>
 				</div>
 				
 			</form>

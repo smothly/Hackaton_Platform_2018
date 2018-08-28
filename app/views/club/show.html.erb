@@ -22,9 +22,15 @@
   <% end%>
   <hr>
 
-        <button class = 'club_intro_btn' type="button"><i class="far fa-heart fa-4x"></i> 찜  하  기</button>
+        <%= form_tag "/interest/index", method: "post" do %>
+          <button type = 'submit' class = 'club_intro_btn' type="button"><i class="far fa-heart fa-4x"></i> 찜  하  기</button>
+          <input type = 'hidden' name = "c_id" value = "<%= @club.id %>"></input>
+        <% end %>
         <br>
         <button class = 'club_intro_btn' type="button"><i class="fas fa-check fa-4x"></i> 참가신청</button>
+        <!-- input type hidden으로 두고 name 은 콘텐트 한다음에currnet_user.name 이 @club.name 동아리에 참가 신청 하였습니다. 를 club.find(user)
+        User.where(:leader => true, :club_id == @club.id)
+        -->
         <br>
         <button class = 'club_intro_btn' type="button"><i class="far fa-comments fa-4x"></i> 문의하기</button>
     </div>
@@ -77,21 +83,32 @@
                     padding: 0;
                     margin: 0;'><%= a.created_at.strftime("%Y-%m-%d %H:%M") %></p>
         <% #TODO: 게시글 작성자 나오게 하고 링크 걸어놈 현재 디비 마이그레이트 안돼서 주석처리 %>
-        <%= link_to "/message/send_form/" + a.user_id.to_s,
-        class: "message_tooltip",
-        'data-toggle' => 'tooltip', 
-        'title' => "쪽지 전송", 
-        'data-placement' => 'top' do%>
-          <p class = 'article_user'
-             style = 'position: absolute;
-                      font-size: 16px;
-                      top: 1.5%;
-                      left: 30%;
-                      padding: 0;
-                      margin: 0;
-                      color: black;'>
-            <%= User.find(a.user_id).name %></p>
-        <% end %>
+        <span class ='message_tooltip' data-toggle ='tooltip' title='쪽지 전송'>
+        <a data-toggle="modal" href="#comment-send<%= a.user_id %>">
+              <p class = 'article_user' 
+                 style = 'position: absolute;
+                          font-size: 16px;
+                          top: 1.5%;
+                          left: 30%;
+                          padding: 0;
+                          margin: 0;
+                          color: black;'><%= User.find(a.user_id).name %></p>
+        </a></span>
+        <!--<%#= link_to "/message/send_form/" + a.user_id.to_s,-->
+        <!--class: "message_tooltip",-->
+        <!--'data-toggle' => 'tooltip', -->
+        <!--'title' => "쪽지 전송", -->
+        <!--'data-placement' => 'top' do%>-->
+        <!--  <p class = 'article_user'-->
+        <!--     style = 'position: absolute;-->
+        <!--              font-size: 16px;-->
+        <!--              top: 1.5%;-->
+        <!--              left: 30%;-->
+        <!--              padding: 0;-->
+        <!--              margin: 0;-->
+        <!--              color: black;'>-->
+        <!--    <%#= User.find(a.user_id).name %></p>-->
+        <!--<%# end %>-->
         
         <!-- 사진 여러개 나오게 하기 -->
         <% a.images.each_with_index do |i,index| %>
@@ -177,6 +194,7 @@
         <!--댓글 다는 부분-->
         <div class = 'club_comment_new'>
          <!-- <p>댓글을 작성하시겠습니까?</p>-->
+          
           <%= form_tag "/comment/create", method: "post", multipart: true do %>
             <input type = "hidden" value = '<%= form_authenticity_token%>' name ='authenticity_token'></input>
             <input type = "text" style = "width: 90%;
@@ -219,16 +237,51 @@
                          padding: 0;
                          margin: 0;'><%= c.created_at.strftime("%Y-%m-%d %H:%M") %></p>
               <% #TODO: 댓글 작성자 이름 누르면 쪽지 보내기 기능 해놈 이름 클릭하면 자바스크립트로  쪽지 보내기 버튼 나왓으면 좋겠음 %>
-              <%= link_to "/message/send_form/" + c.user_id.to_s,
-                  'data-toggle' => 'tooltip', 
-                  'title' => "쪽지 전송", 
-                  'data-placement' => 'left' do %>
-              <p class = 'comment_name' style = 'font-size: 18px;
-                                                 padding: 5px 20px 5px 20px;
-                                                 text-align: left;
-                                                 color: grey;
-                                                 margin: 0;'><%= User.find(Comment.find(c.id).user_id).name %></p>
-              <% end %>
+               
+                
+              <!--<%#= link_to "/message/send_form/" + c.user_id.to_s,-->
+              <!--    'data-toggle' => 'tooltip', -->
+              <!--    'title' => "쪽지 전송", -->
+              <!--    'data-placement' => 'left' do %>-->
+              <span data-toggle='tooltip' title = '쪽지 전송' data-placement = 'left'>
+                <a data-toggle="modal" href="#comment-send<%= c.user_id %>">
+                  <p class = 'comment_name' style = 'font-size: 18px;
+                                                     padding: 5px 20px 5px 20px;
+                                                     text-align: left;
+                                                     color: grey;
+                                                     margin: 0;'><%= User.find(Comment.find(c.id).user_id).name %></p>
+                </a>
+              </span>
+              <%# end %>
+              <!--쪽지 보내기 모달-->
+              <div class="modal fade text-center" id="comment-send<%= c.user_id %>" tabindex="-1" role="dialog">
+              <% comment_user_id = c.user_id %>
+              <div class="modal-dialog">
+                <div class="modal-content message">
+                  
+                    <div class="modal-header">
+                      <h4>쪽지 전송</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <div class="modal-body">
+                      <%= form_tag "/message/create", method: "post" do%>
+                        <input type = "hidden" value = '<%= form_authenticity_token%>' name ='authenticity_token'></input>
+                        <input type = "text" name = "message[content]" placeholder="쪽지 내용 입력"></input>
+                        <input type = "hidden" name = "message[user_id]" value = <%= current_user.id %>></input>
+                        <input type = "hidden" name = "message[reciever_id]" value = "<%= comment_user_id %>"></input>
+                    </div>
+                  
+                    <div class="modal-footer">
+                      <p> 받는 사람 :  <%= User.find(comment_user_id).name %> </p>    
+                      <input type = "submit" style = "margin-left: 5px;"></input>
+                      <% end %>
+                    </div>
+                    
+                   </div>
+                    
+                    </div>
+              </div>
               <p class = 'comment_content' style = 'font-size: 15px;
                                                     padding: 3px 10px 5px 10px;
                                                     text-align: left;
